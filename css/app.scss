@@ -74,6 +74,13 @@ a {
     }
 }
 
+.spinner {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .create-item-form {
     max-width: 400px;
     margin: 20px auto;

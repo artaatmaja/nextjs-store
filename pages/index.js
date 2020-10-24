@@ -26,7 +26,7 @@ const Home = ({ stores }) => {
 												</Link>
 											</Card.Title>
 											<Card.Text>
-												Some quick example text to build on the card title and make up the bulk of the card's content.
+												{store.description}
 											</Card.Text>
 											<Link href={`/${store._id}`}>
 												<Button variant="primary" className="card-btn view">View</Button>
