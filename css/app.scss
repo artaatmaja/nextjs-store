@@ -7,6 +7,7 @@
 h1, h2, h3, h4, h5 {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
+    margin-bottom: 15px;
 }
 
 body {
@@ -15,11 +16,16 @@ body {
 }
 
 a {
-    color: black;
+    color: inherit;
     text-decoration: none;
     &:hover {
         text-decoration: none;
     }
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .next-nav {
@@ -30,7 +36,9 @@ a {
     background-color: #fff;
     box-shadow: 1px 1px 1px #000;
     box-shadow: 1px 1px 5px rgba(128, 128, 128, .16);
-
+    @include lt-sm {
+        justify-content: space-between;
+    }
     .navbar-brand {
         margin-right: 50px;
         margin-left: 15px;
@@ -44,8 +52,10 @@ a {
 
     .nav-item {
         padding: 15px;
-        margin-right: 50px;
         font-weight: 700;
+        @include gt-sm {
+            margin-right: 50px;
+        }
         .next-logo {
             margin-bottom: 0;
         }
@@ -58,11 +68,17 @@ a {
     .main-title {
         text-align: center;
         margin-bottom: 30px;
+        text-transform: uppercase;
     }
 }
 
 .card {
     margin-bottom: 30px;
+
+    .card-text {
+        height: 72px;
+        overflow: hidden;
+    }
     
     .card-btn {
         margin-right: 15px;
@@ -84,4 +100,41 @@ a {
 .create-item-form {
     max-width: 400px;
     margin: 20px auto;
+}
+
+.product-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.shop-detail {
+
+    .shop-btn {
+        margin-right: 15px;
+    }
+
+    .card {
+        .card-text {
+            span {
+                font-weight: bold;
+            }
+        }    
+    }
+}
+
+.contact-link {
+    display: inline-block;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.input-page {
+    height: calc(100vh - 88px);
+    width: 100vw;
+    background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 0%), url(/images/input.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
 }

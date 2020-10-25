@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button, Spinner, Container, Row, Col, Card} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 
-const Store = ({ store }) => {
+const Store = ({ stores }) => {
 	const [confirm, setConfirm] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const router = useRouter();
@@ -51,33 +51,48 @@ const Store = ({ store }) => {
 	}
 
     return(
-		<section className="main-section">
+		<section className="main-section shop-detail">
 			{isDeleting
 				? <div className="spinner">
 					<Spinner animation="border" />
 				</div>
 				: <Container>
-					<Row>
-						<Col md={{ span: 6, offset: 3 }}>
-							<Card>
-								<Card.Img variant="top" src="http://via.placeholder.com/286x180" />
-								<Card.Body>
-									<Card.Title>
-										{store.title}
-									</Card.Title>
-									<Card.Text>
-										{store.description}
-									</Card.Text>
-									<Button 
-										variant="danger" 
-										className="card-btn view"
-										onClick={() => handleDelete()}
-									>
-										Delete
-									</Button>
-								</Card.Body>
-							</Card>
+					<Row className="m-b-30">
+						<Col md={6}>
+							<img src="../images/shop.jpg" alt="Shop"/>
 						</Col>
+						<Col md={6} className="product-content">
+							<div>
+								<h1>{stores.title}</h1>
+								<p>{stores.description}</p>
+								<Link href={`/${stores._id}/edit`}>
+									<Button variant="primary" className="shop-btn edit">Add Item</Button>
+								</Link>
+								<Button variant="danger" className="shop-btn" onClick={() => handleDelete()}>Delete Shop</Button>
+							</div>
+						</Col>
+					</Row>
+					<hr/>
+					<Row className="m-t-30">
+						{stores.items.map( (items, index) => {
+							return(
+								<Col md={4} key={index}>
+									<Card>
+										<Card.Img variant="top" src="../images/product.jpg" />
+										<Card.Body>
+											<Card.Title>{items.name}</Card.Title>
+											<Card.Text>
+												<span>IDR. {items.price}</span> | <span>Quantity: {items.amount}</span>
+												<br />
+												Some quick example text to build on the card title and make up the bulk of the card's content.
+											</Card.Text>
+											<Button variant="success" disabled>Buy</Button>
+										</Card.Body>
+									</Card>
+								</Col>
+							)
+						})}
+						{/* <h1>{stores.items[0].name}</h1> */}
 					</Row>
 				</Container>
 			}
@@ -89,7 +104,7 @@ Store.getInitialProps = async ({ query: { id } }) => {
     const res = await fetch(`http://localhost:3000/api/store/${id}`);
     const { data } = await res.json();
 
-    return { store: data }
+    return { stores: data }
 }
 
 export default Store;

@@ -1,5 +1,5 @@
-import dbConnect from '../../../utils/dbConnect';
-import Store from '../../../models/Store';
+import dbConnect from '../../../utils/dbConnect'
+import Store from '../../../models/Store'
 
 dbConnect();
 
@@ -19,7 +19,7 @@ export default async (req, res) => {
         case 'POST':
             try {
                 const stores = await Store.create(req.body);
-
+                
                 res.status(201).json({ success: true, data: stores })
             } catch (error) {
                 res.status(400).json({ success: false });

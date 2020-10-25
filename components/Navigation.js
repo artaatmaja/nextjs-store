@@ -15,10 +15,9 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="w-100">
                         <Link href="/"><a className="nav-item">Home</a></Link>
-                        <Link href="/product"><a className="nav-item">Product</a></Link>
                         <Link href="/about"><a className="nav-item">About</a></Link>
                         <Link href="/contact"><a className="nav-item">Contact</a></Link>
-                        <Link href="/new"><a className="nav-item ml-auto">Add item +</a></Link>
+                        <Link href="/new"><a className="nav-item ml-md-auto">Add shop +</a></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

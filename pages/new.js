@@ -65,7 +65,7 @@ const NewItem = () => {
     }
     
     return (
-        <section className="main-section">
+        <section className="main-section input-page">
             <Container>
                 <Row>
                     <Col>
@@ -78,21 +78,23 @@ const NewItem = () => {
                                 : <Form className="create-item-form" onSubmit={handleSubmit}>
 
                                     <Form.Group controlId="formTitle">
-                                        <Form.Label>Title</Form.Label>
+                                        <Form.Label>Shop name</Form.Label>
                                         <Form.Control 
                                             type="text" 
                                             name="title"
+                                            placeholder="Shop name"
                                             onChange={handleChange} 
                                             isInvalid={errors.title ? { content: 'Please enter a title', pointing: 'below' } : null}
                                         />
                                     </Form.Group>
 
                                     <Form.Group controlId="formDescription">
-                                        <Form.Label>Description</Form.Label>
+                                        <Form.Label>Shop description</Form.Label>
                                         <Form.Control 
                                             as="textarea" 
                                             rows={3}
                                             name="description"
+                                            placeholder="Shop description"
                                             onChange={handleChange} 
                                             isInvalid={errors.description ? { content: 'Please enter a description', pointing: 'below' } : null}
                                         />

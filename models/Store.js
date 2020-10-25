@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const StoreSchema = new mongoose.Schema({
     title: {
@@ -12,7 +13,13 @@ const StoreSchema = new mongoose.Schema({
         type: String,
         required: true,
         maxlength: [200, 'Description cannot be more than 200 characters']
-    }
+    },
+    items: [{
+        name: String,
+        price: Number,
+        amount: Number,
+        description: String
+    }]
 })
 
 module.exports = mongoose.models.Store || mongoose.model('Store', StoreSchema);

@@ -1,12 +1,12 @@
 import Head from 'next/head';
-import Navbar from './Navigation'
+import Navigation from './Navigation'
 
 const Layout = ({ children }) => (
     <>
         <Head>
             <title>Next.js Store</title>
         </Head>
-        <Navbar />
+        <Navigation />
         {children}
     </>
 )

@@ -18,7 +18,7 @@ const Home = ({ stores }) => {
 							return(
 								<Col md={4} key={store._id}>
 									<Card>
-										<Card.Img variant="top" src="http://via.placeholder.com/286x180" />
+										<Card.Img variant="top" src="../images/shop.jpg" alt="Shop" />
 										<Card.Body>
 											<Card.Title>
 												<Link href={`/${store._id}`}>
@@ -29,10 +29,7 @@ const Home = ({ stores }) => {
 												{store.description}
 											</Card.Text>
 											<Link href={`/${store._id}`}>
-												<Button variant="primary" className="card-btn view">View</Button>
-											</Link>
-											<Link href={`/${store._id}/edit`}>
-												<Button variant="primary" className="card-btn edit">Edit</Button>
+												<Button variant="primary" className="card-btn view w-100">View</Button>
 											</Link>
 										</Card.Body>
 									</Card>
