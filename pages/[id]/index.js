@@ -65,7 +65,7 @@ const Store = ({ stores }) => {
 							<div>
 								<h1>{stores.title}</h1>
 								<p>{stores.description}</p>
-								<Link href={`/${stores._id}/edit`}>
+								<Link href={`/${stores._id}/add`}>
 									<Button variant="primary" className="shop-btn edit">Add Item</Button>
 								</Link>
 								<Button variant="danger" className="shop-btn" onClick={() => handleDelete()}>Delete Shop</Button>

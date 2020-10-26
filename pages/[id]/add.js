@@ -5,10 +5,8 @@ import { Button, Form, Spinner, Container, Row, Col } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 
 const EditItem = ({ store }) => {
-    // console.log(store)
     const [form, setForm] = useState({ title: store.title, description: store.description, items: store.items})
     const [itemsState, setFormItem] = useState({ name: '', price: '', amount: ''})
-    // console.log(form)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
@@ -26,7 +24,6 @@ const EditItem = ({ store }) => {
 
     const updateItem = async () => {
         form.items.push(itemsState)
-        // console.log(form)
         try {
             const res = await fetch(`http://localhost:3000/api/store/${router.query.id}`, 
             {
@@ -73,7 +70,6 @@ const EditItem = ({ store }) => {
         if (!form.description) {
             err.description = 'Description is required';
         }
-        // console.log(form);
 
         return err;
     }
@@ -115,7 +111,7 @@ const EditItem = ({ store }) => {
                                     </Form.Group>
                                     
                                     <Form.Group controlId="formItemName">
-                                        <Form.Label>Item Name</Form.Label>
+                                        <Form.Label>Product name</Form.Label>
                                         <Form.Control 
                                             type="text"
                                             name="name"
@@ -126,7 +122,7 @@ const EditItem = ({ store }) => {
                                     </Form.Group>
                                     
                                     <Form.Group controlId="formItemPrice">
-                                        <Form.Label>Item Price</Form.Label>
+                                        <Form.Label>Product price</Form.Label>
                                         <Form.Control 
                                             type="number"
                                             name="price"
@@ -137,7 +133,7 @@ const EditItem = ({ store }) => {
                                     </Form.Group>
 
                                     <Form.Group controlId="formItemAmount">
-                                        <Form.Label>Item Amount</Form.Label>
+                                        <Form.Label>Product amount</Form.Label>
                                         <Form.Control 
                                             type="number"
                                             name="amount"
@@ -147,8 +143,8 @@ const EditItem = ({ store }) => {
                                         />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formItemAmount">
-                                        <Form.Label>Item Amount</Form.Label>
+                                    {/* <Form.Group controlId="formItemAmount">
+                                        <Form.Label>Item description</Form.Label>
                                         <Form.Control 
                                             as="textarea" 
                                             rows={3}
@@ -157,7 +153,7 @@ const EditItem = ({ store }) => {
                                             onChange={handleChangeItem} 
                                             isInvalid={errors.title ? { content: 'Please enter amount', pointing: 'below' } : null}
                                         />
-                                    </Form.Group>
+                                    </Form.Group> */}
 
                                     <Button variant="primary" type="submit" className="m-r-15">
                                         Add item
