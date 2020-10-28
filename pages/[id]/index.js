@@ -65,10 +65,15 @@ const Store = ({ stores }) => {
 							<div>
 								<h1>{stores.title}</h1>
 								<p>{stores.description}</p>
-								<Link href={`/${stores._id}/add`}>
-									<Button variant="primary" className="shop-btn edit">Add Item</Button>
+
+								<Link href={`/${stores._id}/edit`}>
+									<Button variant="success" className="shop-btn edit">Edit Shop</Button>
 								</Link>
 								<Button variant="danger" className="shop-btn" onClick={() => handleDelete()}>Delete Shop</Button>
+								
+								<Link href={`/${stores._id}/add`}>
+									<Button variant="primary" className="shop-btn edit d-block m-t-15">Add Item</Button>
+								</Link>
 							</div>
 						</Col>
 					</Row>
@@ -92,7 +97,6 @@ const Store = ({ stores }) => {
 								</Col>
 							)
 						})}
-						{/* <h1>{stores.items[0].name}</h1> */}
 					</Row>
 				</Container>
 			}
