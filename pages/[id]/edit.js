@@ -70,7 +70,7 @@ const EditItem = ({ store }) => {
             <Container>
                 <Row>
                     <Col>
-                        <h1 className="text-center">Add item</h1>
+                        <h1 className="text-center">Edit Shop</h1>
                         {
                             isSubmitting
                                 ? <div className="spinner">
@@ -114,7 +114,7 @@ const EditItem = ({ store }) => {
                                     </Form.Group> */}
 
                                     <Button variant="primary" type="submit" className="m-r-15">
-                                        Add item
+                                        Edit Shop
                                     </Button>
 
                                     <Button variant="danger" onClick={() => router.back()}>

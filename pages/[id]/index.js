@@ -6,24 +6,45 @@ import { Button, Spinner, Container, Row, Col, Card} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 
 const Store = ({ stores }) => {
-	const [confirm, setConfirm] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
+	const [isDeletingItem, setIsDeletingItem] = useState(false);
+	const [idDelete, setIdDelete] = useState({});
 	const router = useRouter();
 
 	useEffect(() => {
 		if (isDeleting) {
-			deleteItem();
+			deleteShop();
 		}
-	}, [isDeleting])
 
-	const deleteItem = async () => {
-		const itemId = router.query.id;
+		if (isDeletingItem) {
+			deleteItem();
+			console.log(idDelete);
+		}
+
+	}, [isDeleting, isDeletingItem])
+
+	const deleteShop = async () => {
+		const shopId = router.query.id;
 		try {
-			const deleted = await fetch(`http://localhost:3000/api/store/${itemId}`, {
+			const deleted = await fetch(`http://localhost:3000/api/store/${shopId}`, {
 				method: "DELETE"
 			})
 
 			router.push("/");
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	const deleteItem = async () => {
+		const shopId = router.query.id;
+		try {
+			const deleted = await fetch(`http://localhost:3000/api/store/${shopId}/${idDelete}`, {
+				method: "DELETE"
+			})
+
+			setIsDeletingItem(false);
+			router.push(`/${shopId}`);
 		} catch (error) {
 			console.log(error);
 		}
@@ -41,6 +62,28 @@ const Store = ({ stores }) => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				setIsDeleting(true);
+				Swal.fire(
+					'Deleted!',
+					'Your file has been deleted.',
+					'success'
+				)
+			}
+		})
+	}
+
+	const handleDeleteItem = async (id) => {
+		setIdDelete(id);
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				setIsDeletingItem(true);
 				Swal.fire(
 					'Deleted!',
 					'Your file has been deleted.',
@@ -72,7 +115,7 @@ const Store = ({ stores }) => {
 								<Button variant="danger" className="shop-btn" onClick={() => handleDelete()}>Delete Shop</Button>
 								
 								<Link href={`/${stores._id}/add`}>
-									<Button variant="primary" className="shop-btn edit d-block m-t-15">Add Item</Button>
+									<Button variant="primary" className="shop-btn edit d-block m-t-15">Add Product</Button>
 								</Link>
 							</div>
 						</Col>
@@ -91,7 +134,8 @@ const Store = ({ stores }) => {
 												<br />
 												Some quick example text to build on the card title and make up the bulk of the card's content.
 											</Card.Text>
-											<Button variant="success" disabled>Buy</Button>
+											<Button variant="success" className="buy-btn" disabled>Buy</Button>
+											<Button variant="danger" className="shop-btn" onClick={() => handleDeleteItem(items._id)}>Delete</Button>
 										</Card.Body>
 									</Card>
 								</Col>
