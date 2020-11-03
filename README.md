@@ -1,11 +1,21 @@
 ## Getting Started
 
-First, run the development server:
+First, clone the project:
+
+```bash
+git clone https://github.com/artaatmaja/nextjs-store.git
+```
+
+Run npm install:
+
+```bash
+npm install
+```
+
+And, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
